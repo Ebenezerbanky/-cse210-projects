@@ -4,15 +4,15 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Ask for the user's grade percentage
+        
         Console.Write("Enter your grade percentage: ");
         int percentage = int.Parse(Console.ReadLine());
 
-        // Variable to store the letter grade and sign
+        
         string letter = "";
         string sign = "";
 
-        // Determine the letter grade
+    
         if (percentage >= 90)
         {
             letter = "A";
@@ -48,17 +48,17 @@ class Program
                 sign = "-";
             }
 
-            // No A+ grade
+            
             if (letter == "A" && sign == "+")
             {
                 sign = "";
             }
         }
 
-        // Print the letter grade with the sign
+        
         Console.WriteLine($"Your letter grade is: {letter}{sign}");
 
-        // Determine if the user passed or failed
+        
         if (percentage >= 70)
         {
             Console.WriteLine("Congratulations, you passed the course!");
