@@ -4,13 +4,16 @@ using System.IO;
 
 public class Journal
 {
+    // List to store all journal entries
     private List<Entry> entries = new List<Entry>();
 
+    // Add a new entry to the journal
     public void AddEntry(Entry entry)
     {
         entries.Add(entry);
     }
 
+    // Display all entries in the journal
     public void DisplayJournal()
     {
         foreach (var entry in entries)
@@ -19,6 +22,7 @@ public class Journal
         }
     }
 
+    // Save the journal to a file
     public void SaveJournal(string filename)
     {
         using (StreamWriter writer = new StreamWriter(filename))
@@ -30,6 +34,7 @@ public class Journal
         }
     }
 
+    // Load the journal from a file
     public void LoadJournal(string filename)
     {
         entries.Clear();
