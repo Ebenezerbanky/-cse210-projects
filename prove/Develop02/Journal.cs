@@ -2,51 +2,64 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-public class Journal
+class Journal
 {
-    // List to store all journal entries
-    private List<Entry> entries = new List<Entry>();
+    public List<Entry> Entries { get; private set; } = new List<Entry>();
 
-    // Add a new entry to the journal
     public void AddEntry(Entry entry)
     {
-        entries.Add(entry);
+        Entries.Add(entry);
     }
 
-    // Display all entries in the journal
-    public void DisplayJournal()
+    public void DisplayEntries()
     {
-        foreach (var entry in entries)
+        if (Entries.Count == 0)
         {
-            Console.WriteLine(entry.ToString());
+            Console.WriteLine("No entries to display.");
+        }
+        else
+        {
+            foreach (var entry in Entries)
+            {
+                entry.Display();
+            }
         }
     }
 
-    // Save the journal to a file
-    public void SaveJournal(string filename)
+    public void SaveToFile(string filename)
     {
         using (StreamWriter writer = new StreamWriter(filename))
         {
-            foreach (var entry in entries)
+            foreach (var entry in Entries)
             {
                 writer.WriteLine($"{entry.Date}|{entry.Prompt}|{entry.Response}");
             }
         }
+        Console.WriteLine("Journal saved successfully.");
     }
 
-    // Load the journal from a file
-    public void LoadJournal(string filename)
+    public void LoadFromFile(string filename)
     {
-        entries.Clear();
-        string[] lines = File.ReadAllLines(filename);
-
-        foreach (var line in lines)
+        if (File.Exists(filename))
         {
-            string[] parts = line.Split('|');
-            if (parts.Length == 3)
+            Entries.Clear();
+            string[] lines = File.ReadAllLines(filename);
+
+            foreach (string line in lines)
             {
-                entries.Add(new Entry(parts[1], parts[2], parts[0]));
+                string[] parts = line.Split('|');
+                if (parts.Length == 3)
+                {
+                    Entry entry = new Entry(parts[1], parts[2]);
+                    entry.Date = parts[0];
+                    Entries.Add(entry);
+                }
             }
+            Console.WriteLine("Journal loaded successfully.");
+        }
+        else
+        {
+            Console.WriteLine("File not found.");
         }
     }
 }

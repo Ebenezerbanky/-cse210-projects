@@ -1,23 +1,23 @@
 using System;
 
-public class Entry
+class Entry
 {
-    // Properties to store prompt, response, and date
     public string Prompt { get; set; }
     public string Response { get; set; }
     public string Date { get; set; }
 
-    // Constructor to initialize a new journal entry
-    public Entry(string prompt, string response, string date)
+    public Entry(string prompt, string response)
     {
         Prompt = prompt;
         Response = response;
-        Date = date;
+        Date = DateTime.Now.ToString("yyyy-MM-dd");
     }
 
-    // Override the ToString method to display entry information
-    public override string ToString()
+    public void Display()
     {
-        return $"Date: {Date}\nPrompt: {Prompt}\nResponse: {Response}\n";
+        Console.WriteLine($"Date: {Date}");
+        Console.WriteLine($"Prompt: {Prompt}");
+        Console.WriteLine($"Response: {Response}");
+        Console.WriteLine();
     }
 }
