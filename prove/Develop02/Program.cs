@@ -20,9 +20,6 @@ class Program
         // Display a welcome message
         Console.WriteLine("Welcome to the Journal Program");
 
-        // Your journal object
-        Journal journal = new Journal();
-        
         while (true)
         {
             Console.WriteLine("\nJournal Menu:");
