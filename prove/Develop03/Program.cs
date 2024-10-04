@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 
 public class Program
 {
-
-    // My Creativity elements include:
-    // 1. A hint feature that provides feedback on words still visible.
-    // 2. Random selection of scriptures from a file, allowing varied practice.
-    // 3. Encouraging user interaction to reinforce memorization.
     public static void Main(string[] args)
     {
-        // Load scriptures from a specified file path
-        List<Scripture> scriptures = LoadScripturesFromFile(@"C:\Users\HomePC\Documents\scriptures.txt");
+         // My Creativity elements include:
+        // 1. A hint feature that provides feedback on words still visible.
+       // 2. Random selection of scriptures from a file, allowing varied practice.
+       // 3. Encouraging user interaction to reinforce memorization.
+      //4. Load scriptures from the same directory as the Program.cs file
+        List<Scripture> scriptures = LoadScripturesFromFile("scriptures.txt");
         Random random = new Random();
         
         while (scriptures.Count > 0)
@@ -48,10 +47,10 @@ public class Program
         }
     }
 
-    private static List<Scripture> LoadScripturesFromFile(string filePath = @"C:\Users\HomePC\Documents\scriptures.txt")
+    private static List<Scripture> LoadScripturesFromFile(string filePath = "scriptures.txt")
     {
         var scriptures = new List<Scripture>();
-        var lines = System.IO.File.ReadAllLines(filePath);
+        var lines = File.ReadAllLines(filePath);
         
         foreach (var line in lines)
         {
